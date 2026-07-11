@@ -488,18 +488,6 @@
   .client-meta span.tag-orange{color:var(--orange);}
   .client-desc{color:var(--gray);font-size:0.98rem;line-height:1.65;max-width:640px;margin-bottom:32px;}
 
-  .video-frame{
-    border-radius:16px;overflow:hidden;
-    border:1px solid var(--line);
-    background:#000;
-    margin-bottom:8px;
-  }
-  .video-frame video{width:100%;display:block;max-height:520px;background:#000;}
-  .video-caption{
-    font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--gray);
-    margin-top:10px;
-  }
-
   .ig-widget{
     margin-top:36px;
     display:flex;align-items:center;gap:18px;
