@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entrega de archivos — Luis José Digital</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" href="https://i.postimg.cc/mDjmd9xJ/Perfil.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<style>
+  .gate-wrap{
+    min-height:100svh;display:flex;align-items:center;justify-content:center;
+    padding:24px;
+    background:radial-gradient(ellipse 700px 500px at 50% 20%, rgba(255,106,26,0.14), transparent 60%), var(--black);
+  }
+  .gate-card{
+    width:100%;max-width:440px;
+    background:var(--charcoal);border:1px solid var(--line);border-radius:20px;
+    padding:38px 34px;
+  }
+  .gate-logo{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--orange);margin-bottom:20px;}
+  .gate-card h1{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:1.35rem;margin-bottom:8px;}
+  .gate-card .sub{color:var(--gray);font-size:0.92rem;margin-bottom:26px;line-height:1.5;}
+  .gate-card input{
+    width:100%;background:var(--charcoal-2);border:1px solid var(--line);border-radius:10px;
+    padding:13px 16px;color:var(--paper);font-family:'Inter',sans-serif;font-size:1rem;
+    outline:none;margin-bottom:14px;transition:border-color .15s ease;
+  }
+  .gate-card input:focus{border-color:var(--orange);}
+  .gate-submit{
+    width:100%;background:var(--orange);color:var(--black);font-weight:600;font-size:0.95rem;
+    padding:13px 20px;border-radius:100px;border:none;cursor:pointer;
+    transition:background .15s ease;
+  }
+  .gate-submit:hover{background:var(--orange-soft);}
+  .gate-submit:disabled{background:#555;cursor:not-allowed;}
+  .gate-error{
+    color:#ff6b6b;font-size:0.85rem;margin-top:12px;display:none;
+    font-family:'JetBrains Mono',monospace;
+  }
+  .delivery-body{display:none;}
+  .delivery-body.show{display:block;}
+  .gate-card.hide{display:none;}
+  .delivery-files{margin-top:22px;display:flex;flex-direction:column;gap:10px;}
+  .delivery-file{
+    display:flex;align-items:center;justify-content:space-between;gap:14px;
+    background:var(--charcoal-2);border:1px solid var(--line);border-radius:12px;
+    padding:14px 18px;font-size:0.92rem;
+  }
+  .delivery-file .dl-btn{
+    background:var(--orange);color:var(--black);font-weight:600;font-size:0.85rem;
+    padding:9px 16px;border-radius:100px;white-space:nowrap;flex-shrink:0;
+  }
+  .delivery-file .dl-btn:hover{background:var(--orange-soft);}
+</style>
+</head>
+<body>
+
+<div class="gate-wrap">
+
+  <div class="gate-card" id="gate-card">
+    <img class="gate-logo" src="https://i.postimg.cc/mDjmd9xJ/Perfil.png" alt="Luis José Digital">
+    <h1>Entrega de archivos</h1>
+    <p class="sub" id="gate-sub">Escribe la contraseña que te compartí para acceder a tus archivos.</p>
+    <input type="password" id="pw-input" placeholder="Contraseña" autocomplete="off">
+    <button class="gate-submit" id="pw-submit">Ver mis archivos →</button>
+    <p class="gate-error" id="pw-error">Contraseña incorrecta o entrega no encontrada.</p>
+  </div>
+
+  <div class="gate-card delivery-body" id="delivery-body">
+    <img class="gate-logo" src="https://i.postimg.cc/mDjmd9xJ/Perfil.png" alt="Luis José Digital">
+    <h1 id="d-cliente">Tus archivos</h1>
+    <p class="sub" id="d-descripcion"></p>
+    <div class="delivery-files" id="d-archivos"></div>
+  </div>
+
+</div>
+
+<script src="entregas-data.js"></script>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const entregaId = params.get('id');
+  const entrega = (typeof ENTREGAS !== 'undefined' && entregaId) ? ENTREGAS[entregaId] : null;
+
+  const gateCard = document.getElementById('gate-card');
+  const gateSub = document.getElementById('gate-sub');
+  const pwInput = document.getElementById('pw-input');
+  const pwSubmit = document.getElementById('pw-submit');
+  const pwError = document.getElementById('pw-error');
+  const deliveryBody = document.getElementById('delivery-body');
+
+  let intentos = 0;
+
+  if (!entrega) {
+    gateSub.textContent = 'No encontramos ninguna entrega con ese enlace. Revisa que copiaste el link completo.';
+    pwInput.disabled = true;
+    pwSubmit.disabled = true;
+  } else {
+    gateSub.textContent = `Entrega para: ${entrega.cliente}`;
+  }
+
+  async function sha256Hex(texto) {
+    const enc = new TextEncoder().encode(texto);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', enc);
+    return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  async function intentarAcceso() {
+    if (!entrega) return;
+    const valor = pwInput.value.trim();
+    if (!valor) return;
+
+    pwSubmit.disabled = true;
+    pwSubmit.textContent = 'Verificando...';
+
+    const hash = await sha256Hex(valor);
+
+    if (hash === entrega.passwordHash) {
+      document.getElementById('d-cliente').textContent = entrega.cliente;
+      document.getElementById('d-descripcion').textContent = entrega.descripcion;
+      const cont = document.getElementById('d-archivos');
+      cont.innerHTML = '';
+      entrega.archivos.forEach((archivo) => {
+        const row = document.createElement('div');
+        row.className = 'delivery-file';
+        row.innerHTML = `<span>${archivo.nombre}</span><a class="dl-btn" href="${archivo.url}" target="_blank" rel="noopener">Descargar</a>`;
+        cont.appendChild(row);
+      });
+      gateCard.classList.add('hide');
+      deliveryBody.classList.add('show');
+    } else {
+      intentos++;
+      pwError.style.display = 'block';
+      pwInput.value = '';
+      pwSubmit.disabled = false;
+      pwSubmit.textContent = 'Ver mis archivos →';
+      if (intentos >= 5) {
+        pwSubmit.disabled = true;
+        pwSubmit.textContent = 'Demasiados intentos, espera un momento';
+        setTimeout(() => {
+          pwSubmit.disabled = false;
+          pwSubmit.textContent = 'Ver mis archivos →';
+          intentos = 0;
+        }, 20000);
+      }
+    }
+  }
+
+  pwSubmit.addEventListener('click', intentarAcceso);
+  pwInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') intentarAcceso();
+  });
+</script>
+
+</body>
+</html>
