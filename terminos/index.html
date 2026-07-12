@@ -6,6 +6,14 @@
 <title>Términos y Condiciones — Luis José Digital</title>
 <meta name="description" content="Términos y condiciones de los servicios de Luis José Digital: páginas web, edición y creación de video, y presencia digital.">
 <link rel="icon" type="image/png" href="https://i.postimg.cc/mDjmd9xJ/Perfil.png">
+<link rel="apple-touch-icon" href="https://i.postimg.cc/mDjmd9xJ/Perfil.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Términos y Condiciones — Luis José Digital">
+<meta property="og:description" content="Términos y condiciones de los servicios de Luis José Digital.">
+<meta property="og:image" content="https://i.postimg.cc/mDjmd9xJ/Perfil.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Términos y Condiciones — Luis José Digital">
+<meta name="twitter:description" content="Términos y condiciones de los servicios de Luis José Digital.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -24,8 +32,21 @@
     <a href="../privacidad/">Privacidad</a>
     <a href="../index.html#contacto">Contacto</a>
   </div>
-  <a class="nav-cta" href="https://wa.me/573228460127" target="_blank" rel="noopener">Escríbeme</a>
+  <div class="nav-right">
+    <a class="nav-cta" href="https://wa.me/573228460127" target="_blank" rel="noopener">Escríbeme</a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
+
+<div class="nav-mobile" id="nav-mobile">
+  <a href="../index.html">Inicio</a>
+    <a href="../clientes/">Clientes</a>
+    <a href="../privacidad/">Privacidad</a>
+    <a href="../index.html#contacto">Contacto</a>
+  <a class="nav-mobile-cta" href="https://wa.me/573228460127" target="_blank" rel="noopener">Escríbeme →</a>
+</div>
 
 <header class="page-hero">
   <div class="wrap">
@@ -39,7 +60,7 @@
 <main>
   <section class="section" style="padding-top:20px;">
     <div class="wrap">
-      <div class="legal-doc">
+      <div class="legal-doc reveal">
 
         <h2><span class="num">01</span> Sobre Luis José Digital</h2>
         <p><strong>Luis José Digital</strong> es un negocio digital operado por Luis José, persona natural con sede en Apartadó, Colombia. Ofrece servicios de creación de páginas web, edición y creación de video, y presencia digital, para personas, negocios y creadores de contenido dentro y fuera de Colombia.</p>
@@ -150,6 +171,7 @@
   const MSG_RAPIDO = 'Hola Luis, tengo una pregunta sobre los términos del servicio.';
   document.getElementById('wa-float').href = `https://wa.me/${WA_NUMERO}?text=${encodeURIComponent(MSG_RAPIDO)}`;
 </script>
+<script src="../script.js"></script>
 
 </body>
 </html>
