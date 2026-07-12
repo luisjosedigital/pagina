@@ -6,6 +6,15 @@
 <title>Luis José Digital — Consultor Digital</title>
 <meta name="description" content="Luis José Digital: páginas web, edición de video y presencia digital para negocios, personas y creadores de contenido.">
 <link rel="icon" type="image/png" href="https://i.postimg.cc/mDjmd9xJ/Perfil.png">
+<link rel="apple-touch-icon" href="https://i.postimg.cc/mDjmd9xJ/Perfil.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Luis José Digital — Consultor Digital">
+<meta property="og:description" content="Páginas web, edición de video y presencia digital para negocios, personas y creadores de contenido.">
+<meta property="og:image" content="https://i.postimg.cc/mDjmd9xJ/Perfil.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Luis José Digital — Consultor Digital">
+<meta name="twitter:description" content="Páginas web, edición de video y presencia digital para negocios, personas y creadores de contenido.">
+<meta name="twitter:image" content="https://i.postimg.cc/mDjmd9xJ/Perfil.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -14,18 +23,31 @@
 <body>
 
 <nav>
-  <div class="nav-logo">
+  <a class="nav-logo" href="index.html">
     <img class="nav-avatar" src="https://i.postimg.cc/mDjmd9xJ/Perfil.png" alt="Luis José">
     Luis José <span>Digital</span>
-  </div>
+  </a>
   <div class="nav-links">
     <a href="#servicios">Servicios</a>
     <a href="clientes/">Clientes</a>
     <a href="#por-que">Por qué elegirme</a>
     <a href="#contacto">Contacto</a>
   </div>
-  <a class="nav-cta" href="https://wa.me/573228460127" target="_blank" rel="noopener">Escríbeme</a>
+  <div class="nav-right">
+    <a class="nav-cta" href="https://wa.me/573228460127" target="_blank" rel="noopener">Escríbeme</a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
+
+<div class="nav-mobile" id="nav-mobile">
+  <a href="#servicios">Servicios</a>
+  <a href="clientes/">Clientes</a>
+  <a href="#por-que">Por qué elegirme</a>
+  <a href="#contacto">Contacto</a>
+  <a class="nav-mobile-cta" href="https://wa.me/573228460127" target="_blank" rel="noopener">Escríbeme →</a>
+</div>
 
 <header class="hero">
   <div class="wrap">
@@ -53,21 +75,21 @@
         <p class="section-desc">Desde la primera idea hasta el contenido que la muestra al mundo. Así es como te ayudo a construir presencia.</p>
       </div>
       <div class="services">
-        <div class="service">
+        <div class="service reveal">
           <div class="service-media"><img src="https://i.postimg.cc/1XzJbzs0/Creacion-de-Pagina.png" alt="Creación de páginas web"></div>
           <div class="service-body">
             <h3>Páginas web</h3>
             <p>Sitios rápidos, claros y pensados para convertir visitas en clientes. Diseño propio, sin plantillas genéricas.</p>
           </div>
         </div>
-        <div class="service">
+        <div class="service reveal">
           <div class="service-media"><img src="https://i.postimg.cc/MHGdgGq7/Creacion-de-Video.png" alt="Creación de video"></div>
           <div class="service-body">
             <h3>Edición de video</h3>
             <p>Contenido editado para redes sociales que capta la atención en los primeros segundos y refuerza tu marca.</p>
           </div>
         </div>
-        <div class="service">
+        <div class="service reveal">
           <div class="service-media"><img src="https://i.postimg.cc/L5sNGs23/Edicion-de-Video.png" alt="Presencia digital"></div>
           <div class="service-body">
             <h3>Presencia digital</h3>
@@ -86,21 +108,21 @@
       </div>
       <div class="why">
         <ul class="why-list">
-          <li>
+          <li class="reveal">
             <span class="why-num">01</span>
             <div>
               <h4>Comunicación directa</h4>
               <p>Hablamos por chat, sin intermediarios ni procesos eternos. Tú me cuentas qué necesitas y avanzamos.</p>
             </div>
           </li>
-          <li>
+          <li class="reveal">
             <span class="why-num">02</span>
             <div>
               <h4>Trabajo a la medida</h4>
               <p>Cada página y cada video se piensan para tu proyecto, no para encajar en una plantilla genérica.</p>
             </div>
           </li>
-          <li>
+          <li class="reveal">
             <span class="why-num">03</span>
             <div>
               <h4>Acompañamiento real</h4>
@@ -108,7 +130,7 @@
             </div>
           </li>
         </ul>
-        <div class="why-quote">
+        <div class="why-quote reveal">
           <span class="mark">"</span>
           <p>Tener presencia digital no debería ser un lujo. Es la puerta de entrada para que te encuentren, te crean y te elijan.</p>
           <div class="attrib">
@@ -127,7 +149,7 @@
         <h2 class="section-title">Clientes con los que he trabajado.</h2>
         <p class="section-desc">Proyectos reales, explicados con detalle — incluyendo video del trabajo terminado.</p>
       </div>
-      <a class="teaser-card" href="clientes/">
+      <a class="teaser-card reveal" href="clientes/">
         <img class="teaser-logo" src="https://i.postimg.cc/Qd6sjdPG/omcontandosoluciones.png" alt="Logo Omcontandosoluciones">
         <div class="teaser-body">
           <h4>Omcontandosoluciones</h4>
@@ -140,7 +162,7 @@
 
   <section class="section" id="contacto">
     <div class="wrap">
-      <div class="contact">
+      <div class="contact reveal">
         <div class="contact-grid">
           <div>
             <h2 class="contact-title">Cuéntame qué <em>necesita</em><br>tu proyecto.</h2>
@@ -261,6 +283,7 @@
 <script>
   document.getElementById('wa-float').href = `https://wa.me/${WA_NUMERO}?text=${encodeURIComponent(MSG_RAPIDO)}`;
 </script>
+<script src="script.js"></script>
 
 </body>
 </html>
