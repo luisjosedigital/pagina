@@ -20,4 +20,24 @@
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
+  <url>
+    <loc>https://luisjosedigital.github.io/pagina/blog/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luisjosedigital.github.io/pagina/blog/cuanto-cuesta-una-pagina-web/</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://luisjosedigital.github.io/pagina/blog/errores-editar-video-redes-sociales/</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://luisjosedigital.github.io/pagina/blog/presencia-digital-para-tu-negocio/</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>
