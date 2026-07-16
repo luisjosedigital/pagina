@@ -178,6 +178,12 @@
   }
   .hero-tags span{display:flex;align-items:center;gap:10px;}
 
+  .ad-panel{padding:40px 0;background:rgba(255,106,26,0.04);}
+  .ad-panel .ad-slot{display:flex;align-items:center;gap:18px;padding:24px;border:1px dashed rgba(255,106,26,0.5);background:rgba(255,106,26,0.06);border-radius:22px;}
+  .ad-badge{padding:8px 14px;background:rgba(255,106,26,0.12);color:var(--orange);font-family:'JetBrains Mono',monospace;font-size:0.82rem;font-weight:700;border-radius:999px;text-transform:uppercase;letter-spacing:0.1em;}
+  .ad-slot p{color:var(--paper);font-size:1rem;line-height:1.75;max-width:760px;}
+  .ad-slot small{display:block;color:var(--gray);margin-top:8px;font-size:0.9rem;}
+
   /* ---------- ICONS ---------- */
   .icon{
     width:20px;height:20px;flex-shrink:0;
